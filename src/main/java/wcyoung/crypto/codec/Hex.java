@@ -5,11 +5,11 @@ public class Hex implements Coder {
     @Override
     public String encode(byte[] bytes) {
         StringBuilder sb = new StringBuilder(bytes.length);
-        for (int i = 0; i < bytes.length; i++) {
-            if ((bytes[i] & 0xFF) < 0x10) {
+        for (byte aByte : bytes) {
+            if ((aByte & 0xFF) < 0x10) {
                 sb.append("0");
             }
-            sb.append(Long.toString(bytes[i] & 0xFF, 16));
+            sb.append(Long.toString(aByte & 0xFF, 16));
         }
         return sb.toString();
     }
