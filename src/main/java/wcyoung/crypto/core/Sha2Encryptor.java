@@ -13,7 +13,7 @@ public class Sha2Encryptor {
     private final Coder coder;
 
     public Sha2Encryptor() {
-        this(DefaultCryptoConst.CODER);
+        this(DefaultCryptoConstants.CODER);
     }
 
     public Sha2Encryptor(Coder coder) {
