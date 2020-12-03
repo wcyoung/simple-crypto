@@ -11,15 +11,15 @@ public class Base64UrlTest {
 
     @Test
     void encode() {
-        Base64 base64 = new Base64();
-        String encodedString = base64.encode(PLAIN_TEXT.getBytes());
+        Base64Url base64Url = new Base64Url();
+        String encodedString = base64Url.encode(PLAIN_TEXT.getBytes());
         assertEquals(encodedString, ENCODED_STRING);
     }
 
     @Test
     void decode() {
-        Base64 base64 = new Base64();
-        String string = new String(base64.decode(ENCODED_STRING));
+        Base64Url base64Url = new Base64Url();
+        String string = new String(base64Url.decode(ENCODED_STRING));
         assertEquals(string, PLAIN_TEXT);
     }
 
