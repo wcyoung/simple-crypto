@@ -7,6 +7,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class BlowfishEncryptor {
@@ -54,7 +55,19 @@ public class BlowfishEncryptor {
     }
 
     private IvParameterSpec defineSpec(String key) {
-        return new IvParameterSpec("12345678".getBytes());
+        byte[] iv = new byte[8];
+        System.arraycopy(hash(key), 0, iv, 0, iv.length);
+        return new IvParameterSpec(iv);
+    }
+
+    private byte[] hash(String key) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+            digest.update(key.getBytes());
+            return digest.digest();
+        } catch (NoSuchAlgorithmException e) {
+            throw new CryptoRuntimeException(e);
+        }
     }
 
 }
